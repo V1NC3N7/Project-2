@@ -21,4 +21,3 @@ try {
 		echo "In file:", $e->getFile(), "\n";
 		echo "On line:", $e->getLine(), "\n";       
     }
-?>
