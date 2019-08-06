@@ -1,27 +1,24 @@
-<?php phpinfo();
+<?php //echo phpversion("mongodb");
 
 require 'vendor/autoload.php';
-// connect
-$m = new MongoDB\Client("mongodb://localhost:27017");
+try {
 
-// select a database
-$db = $m->comedy;
+        $client = new MongoDB\Client;
+        $companydb = $client->companydb;
 
-// select a collection (analogous to a relational database's table)
-$collection = $db->cartoons;
+        $result1 = $companydb->createCollection('mycollection');
 
-// add a record
-$document = array( "title" => "Calvin and Hobbes", "author" => "Bill Watterson" );
-$collection->insert($document);
+        var_dump($result1);
 
-// add another record, with a different "shape"
-$document = array( "title" => "XKCD", "online" => true );
-$collection->insert($document);
+	} catch (MongoDB\Driver\Exception\Exception $e) {
 
-// find everything in the collection
-$cursor = $collection->find();
-
-// iterate through the results
-foreach ($cursor as $document) {
-    echo $document["title"] . "\n";
-}
+		$filename = basename(__FILE__);
+		
+		echo "The $filename script has experienced an error.\n"; 
+		echo "It failed with the following exception:\n";
+		
+		echo "Exception:", $e->getMessage(), "\n";
+		echo "In file:", $e->getFile(), "\n";
+		echo "On line:", $e->getLine(), "\n";       
+    }
+?>
