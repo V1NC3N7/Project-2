@@ -19,4 +19,5 @@ RUN apk add --no-cache $PHPIZE_DEPS \
 	&& docker-php-ext-enable xdebug
 
 RUN pecl install mongodb \
-    && docker-php-ext-enable mongodb
+    && docker-php-ext-enable mongodb \
+    && echo "extension=mongo.so" > /usr/local/etc/php/conf.d/ext-mongo.ini
