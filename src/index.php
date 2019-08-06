@@ -1,14 +1,12 @@
-<?php //echo phpversion("mongodb");
+<?php echo phpinfo();
 
-require 'vendor/autoload.php';
+/*require 'vendor/autoload.php';
 try {
 
-        $client = new MongoDB\Client;
-        $companydb = $client->companydb;
+        $conn = new MongoDB\Driver\Manager;
+        $collection = $conn->Guestbook;
 
-        $result1 = $companydb->createCollection('mycollection');
-
-        var_dump($result1);
+        
 
 	} catch (MongoDB\Driver\Exception\Exception $e) {
 
@@ -21,3 +19,16 @@ try {
 		echo "In file:", $e->getFile(), "\n";
 		echo "On line:", $e->getLine(), "\n";       
     }
+
+    $result1 = $collection->insert([
+        'u_name'=>'Vince',
+        'email'=>'vince@test.com',
+        'comment'=>'Hey World!',
+        'reply'=>'T',
+        'visibility'=>'T',
+    ]);
+
+
+    printf("Inserted %d document(s)\n", $result1->getInsertedCount());
+
+    var_dump($result1->getInsertedId());*/
