@@ -1,13 +1,15 @@
-<?php echo phpinfo();
+<?php //echo phpinfo();
 
-/*require 'vendor/autoload.php';
+require 'vendor/autoload.php';
 try {
 
         $conn = new MongoDB\Driver\Manager;
-        $collection = $conn->Guestbook;
-
+        echo "Connection to database successfully" . "<br>";
+        $db = $conn->Guestbook;
+        echo "Database examplesdb selected" . "<br>";
+        $collection = $db->createCollection("msg");
+        echo "Collection created succsessfully" . "<br>";
         
-
 	} catch (MongoDB\Driver\Exception\Exception $e) {
 
 		$filename = basename(__FILE__);
@@ -31,4 +33,4 @@ try {
 
     printf("Inserted %d document(s)\n", $result1->getInsertedCount());
 
-    var_dump($result1->getInsertedId());*/
+    var_dump($result1->getInsertedId());
