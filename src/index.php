@@ -1,36 +1,44 @@
-<?php //echo phpinfo();
+<?php
 
-require 'vendor/autoload.php';
-try {
+include "connectDB.php";
+$conn = new MongoDB\Client("mongodb://172.17.0.4:27017");
+$result = $db->People->find(array(),array('projection' => array('_id'=> false)));
 
-        $conn = new MongoDB\Driver\Manager;
-        echo "Connection to database successfully" . "<br>";
-        $db = $conn->Guestbook;
-        echo "Database examplesdb selected" . "<br>";
-        $collection = $db->createCollection("msg");
-        echo "Collection created succsessfully" . "<br>";
-        
-	} catch (MongoDB\Driver\Exception\Exception $e) {
-
-		$filename = basename(__FILE__);
-		
-		echo "The $filename script has experienced an error.\n"; 
-		echo "It failed with the following exception:\n";
-		
-		echo "Exception:", $e->getMessage(), "\n";
-		echo "In file:", $e->getFile(), "\n";
-		echo "On line:", $e->getLine(), "\n";       
-    }
-
-    $result1 = $collection->insert([
-        'u_name'=>'Vince',
-        'email'=>'vince@test.com',
-        'comment'=>'Hey World!',
-        'reply'=>'T',
-        'visibility'=>'T',
-    ]);
+$data= iterator_to_array($result);
 
 
-    printf("Inserted %d document(s)\n", $result1->getInsertedCount());
+?>
 
-    var_dump($result1->getInsertedId());
+<html>
+  <body>
+    <form action="post_process.php" method="post">
+      Name: <input type="text" name="name"><br><?php echo $nameErr?><br><br>
+      Gender: <input type="radio" name="gender" value="M"> Male <input type="radio" name="gender" value="F"> Female<br><?php echo $gendErr?><br><br>
+      Age: <input type="text" name="age"><br><?php echo $ageErr?><br><br>
+      <input type="submit" name="submit">
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <?php foreach ($data[0] as $key => $value):?>
+          <th>
+            <?php echo $key; ?>
+          </th>
+          <?php endforeach; ?>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($data as $entry) :?>
+        <tr>
+          <?php foreach($entry as $key=>$value):?>
+          <td>
+            <?php echo $value;?>
+          </td>
+          <?php endforeach;?>
+        </tr>
+        <?php endforeach;?>
+      </tbody>
+    </table>
+  </body>
+</html>
