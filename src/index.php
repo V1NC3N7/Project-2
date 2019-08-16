@@ -1,12 +1,11 @@
 <?php
-
 include "connectDB.php";
-$conn = new MongoDB\Client("mongodb://172.17.0.4:27017");
-$result = $db->People->find(array(),array('projection' => array('_id'=> false)));
 
-$data= iterator_to_array($result);
-
-
+function get_data($db){
+  $result = $db->People->find();
+  $data = iterator_to_array($result);
+  return $data;
+}
 ?>
 
 <html>
@@ -18,27 +17,15 @@ $data= iterator_to_array($result);
       <input type="submit" name="submit">
     </form>
 
-    <table>
-      <thead>
-        <tr>
-          <?php foreach ($data[0] as $key => $value):?>
-          <th>
-            <?php echo $key; ?>
-          </th>
-          <?php endforeach; ?>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($data as $entry) :?>
-        <tr>
-          <?php foreach($entry as $key=>$value):?>
-          <td>
-            <?php echo $value;?>
-          </td>
-          <?php endforeach;?>
-        </tr>
-        <?php endforeach;?>
-      </tbody>
-    </table>
-  </body>
+        <?php 
+        $data = get_data($db); 
+        foreach ($data as $people) {
+          
+          echo 'Name:' . $people['Name'] . '<br><br>';
+          echo 'Age:' . $people['Age'] . '<br><br>';
+          echo 'Gender:' . $people['Gender'] . '<br><br>';
+          echo '<a href= "delete.php?id=' . $people['_id'] . '">Delete</a> . ';
+          echo '<a href= "update.php?id=' . $people['_id'] . '">Update</a><hr><br><br>';
+          }
+          ?>
 </html>
