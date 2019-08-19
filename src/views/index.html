@@ -7,6 +7,7 @@
       {% if id is empty %}<input type="hidden" name="action" value="create">{% else %}<input type="hidden" name="action" value="edit"><input type="hidden" name="id" value={{id}}>{% endif %}
       <input type="submit" name="submit">
     </form>
+    
     {% for i in queryData %}
     {% if i is not empty %}
     Name : {{i.Name}} <br>
