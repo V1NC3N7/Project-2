@@ -1,9 +1,9 @@
 <html>
   <body>
     <form action="post_process.php" method="post">
-      Name: <input type="text" name="name" value={{name}}><br>{{nameErr}}<br><br>
-      Gender: <input type="radio" name="gender" value="M" {% if gender == "M" %} checked=checked {% endif %}> Male <input type="radio" name="gender" value="F" {% if gender == "F" %} checked=checked {% endif %}> Female<br>{{gendErr}}<br><br>
-      Age: <input type="text" name="age" value={{age}}><br>{{ageErr}}<br><br>
+      Name: <input type="text" name="name" value={{name}}><br><br>
+      Gender: <input type="radio" name="gender" value="M" {% if gender == "M" %} checked=checked {% endif %}> Male <input type="radio" name="gender" value="F" {% if gender == "F" %} checked=checked {% endif %}> Female<br><br>
+      Age: <input type="text" name="age" value={{age}}><br><br>
       {% if id is empty %}<input type="hidden" name="action" value="create">{% else %}<input type="hidden" name="action" value="edit"><input type="hidden" name="id" value={{id}}>{% endif %}
       <input type="submit" name="submit">
     </form>
