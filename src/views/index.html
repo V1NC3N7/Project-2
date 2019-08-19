@@ -1,6 +1,8 @@
 <html>
-  <body>
+  <body class='container'>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <form action="post_process.php" method="post">
+      <br>
       Name: <input type="text" name="name" value={{name}}><br><br>
       Gender: <input type="radio" name="gender" value="M" {% if gender == "M" %} checked=checked {% endif %}> Male <input type="radio" name="gender" value="F" {% if gender == "F" %} checked=checked {% endif %}> Female<br><br>
       Age: <input type="text" name="age" value={{age}}><br><br>
