@@ -14,6 +14,7 @@ function get_data($db){
       Name: <input type="text" name="name"><br><?php echo $nameErr?><br><br>
       Gender: <input type="radio" name="gender" value="M"> Male <input type="radio" name="gender" value="F"> Female<br><?php echo $gendErr?><br><br>
       Age: <input type="text" name="age"><br><?php echo $ageErr?><br><br>
+      <input type="hidden" name="action" value="create">
       <input type="submit" name="submit">
     </form>
 
