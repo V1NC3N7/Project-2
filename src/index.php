@@ -1,32 +1,17 @@
 <?php
 include "connectDB.php";
+$loader=new Twig_Loader_Filesystem('views');
+$twig = new Twig_Environment($loader);
 
 function get_data($db){
   $result = $db->People->find();
   $data = iterator_to_array($result);
   return $data;
 }
+$list = get_data($db); 
+
+foreach ($list as $people) {
+  $listing[]= $people;
+  }
+echo $twig -> render('index.html', array('queryData'=> $listing));
 ?>
-
-<html>
-  <body>
-    <form action="post_process.php" method="post">
-      Name: <input type="text" name="name"><br><?php echo $nameErr?><br><br>
-      Gender: <input type="radio" name="gender" value="M"> Male <input type="radio" name="gender" value="F"> Female<br><?php echo $gendErr?><br><br>
-      Age: <input type="text" name="age"><br><?php echo $ageErr?><br><br>
-      <input type="hidden" name="action" value="create">
-      <input type="submit" name="submit">
-    </form>
-
-        <?php 
-        $data = get_data($db); 
-        foreach ($data as $people) {
-          
-          echo 'Name:' . $people['Name'] . '<br><br>';
-          echo 'Age:' . $people['Age'] . '<br><br>';
-          echo 'Gender:' . $people['Gender'] . '<br><br>';
-          echo '<a href= "delete.php?id=' . $people['_id'] . '">Delete</a> . ';
-          echo '<a href= "update.php?id=' . $people['_id'] . '">Update</a><hr><br><br>';
-          }
-          ?>
-</html>
