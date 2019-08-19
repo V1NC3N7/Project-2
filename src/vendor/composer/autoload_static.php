@@ -7,10 +7,21 @@ namespace Composer\Autoload;
 class ComposerStaticInit88f92bf537f84fce826619b887b6a46d
 {
     public static $files = array (
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '3a37ebac017bc098e9a86b35401e7a68' => __DIR__ . '/..' . '/mongodb/mongodb/src/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
+        ),
         'M' => 
         array (
             'MongoDB\\' => 8,
@@ -18,9 +29,31 @@ class ComposerStaticInit88f92bf537f84fce826619b887b6a46d
     );
 
     public static $prefixDirsPsr4 = array (
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
         'MongoDB\\' => 
         array (
             0 => __DIR__ . '/..' . '/mongodb/mongodb/src',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
         ),
     );
 
@@ -29,6 +62,7 @@ class ComposerStaticInit88f92bf537f84fce826619b887b6a46d
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit88f92bf537f84fce826619b887b6a46d::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit88f92bf537f84fce826619b887b6a46d::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit88f92bf537f84fce826619b887b6a46d::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
