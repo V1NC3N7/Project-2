@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 try {
-        $conn = new MongoDB\Client("mongodb://172.17.0.4:27017");
+        $conn = new MongoDB\Client("mongodb://172.17.0.2:27017");
         $db = $conn->People;
         
 	} catch (MongoDB\Driver\Exception\Exception $e) {
