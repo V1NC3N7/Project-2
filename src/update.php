@@ -11,7 +11,11 @@ $gender = $info ->Gender;
 $id =$_GET['id'];
 
 function get_data($db){
-  $result = $db->People->find();
+  $filter = array();
+  $options = array(
+    "sort" => array("_id" => -1),
+  );
+  $result = $db->People->find($filter, $options);
   $data = iterator_to_array($result);
   return $data;
 }
